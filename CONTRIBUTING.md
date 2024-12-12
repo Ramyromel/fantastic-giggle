@@ -57,3 +57,16 @@ We welcome suggestions for new features and improvements. To suggest an enhancem
 
 ## License
 By contributing to this project, you agree that your contributions will be licensed under the [MIT License](LICENSE).
+
+## Code Review Process
+All submissions, including pull requests, must go through a code review process. This ensures that the code is of high quality and follows the project's guidelines. A reviewer will be assigned to your pull request and will provide feedback. Please address any comments and make the necessary changes before the pull request can be merged.
+
+## Issue Triaging
+We use GitHub issues to track bugs, enhancements, and other requests. When creating an issue, please provide as much detail as possible, including steps to reproduce the problem, the expected behavior, and any relevant screenshots or error messages. The project maintainers will triage the issues and prioritize them based on their impact and urgency.
+
+## Communication Channels
+We have the following communication channels for discussing the project and collaborating with the community:
+
+- GitHub Discussions: [link to discussions]
+- Slack: [link to Slack workspace]
+- Email: [project email address]

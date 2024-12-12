@@ -74,3 +74,38 @@ jobs:
       # Set minimum code coverage threshold
       - name: Set minimum code coverage threshold
         run: jest --coverage --coverageThreshold='{"global": {"branches": 80, "functions": 80, "lines": 80, "statements": 80}}'
+
+      # Run security scan
+      - name: Run security scan
+        run: npm audit
+
+      # Run dependency check
+      - name: Run dependency check
+        run: npm outdated
+
+  deploy:
+    permissions:
+      contents: none
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Development'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v3
+      with:
+        name: node-app
+
+    - name: 'Deploy to Azure WebApp'
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+    - name: Notify on failure
+      if: failure()
+      run: echo "Deployment failed. Please check the logs for more details."
