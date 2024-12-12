@@ -1,0 +1,16 @@
+{
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "description": "Your project description",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.0.0",
+    "eslint": "^7.0.0"
+  }
+}

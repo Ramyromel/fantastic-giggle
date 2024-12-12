@@ -34,3 +34,43 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      # Run Jest tests
+      - name: Run Jest tests
+        run: npm test
+
+      # Generate and upload test reports
+      - name: Generate and upload test reports
+        run: |
+          mkdir -p test-reports
+          jest --json --outputFile=test-reports/jest-results.json
+        continue-on-error: true
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: test-reports
+
+      # Run ESLint
+      - name: Run ESLint
+        run: npm run lint
+
+      # Generate and upload linting reports
+      - name: Generate and upload linting reports
+        run: |
+          mkdir -p lint-reports
+          eslint . -f json -o lint-reports/eslint-results.json
+        continue-on-error: true
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: lint-reports
+          path: lint-reports
+
+      # Generate code coverage report
+      - name: Generate code coverage report
+        run: jest --coverage
+
+      # Set minimum code coverage threshold
+      - name: Set minimum code coverage threshold
+        run: jest --coverage --coverageThreshold='{"global": {"branches": 80, "functions": 80, "lines": 80, "statements": 80}}'
