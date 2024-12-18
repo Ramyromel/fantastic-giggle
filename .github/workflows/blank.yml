@@ -53,7 +53,7 @@ jobs:
 
       # Run ESLint
       - name: Run ESLint
-        run: npm run lint
+        run: npm run lint -- --max-warnings=0
 
       # Generate and upload linting reports
       - name: Generate and upload linting reports
@@ -66,6 +66,10 @@ jobs:
         with:
           name: lint-reports
           path: lint-reports
+
+      # Run Prettier
+      - name: Run Prettier
+        run: prettier --check .
 
       # Generate code coverage report
       - name: Generate code coverage report
