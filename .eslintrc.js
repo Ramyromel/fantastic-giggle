@@ -8,6 +8,11 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react-hooks/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -20,6 +25,9 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'import',
+    'jsx-a11y',
+    'react-hooks',
   ],
   rules: {
     'indent': ['error', 2],
@@ -29,6 +37,15 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-console': 'off',
     'comma-dangle': ['error', 'always-multiline'],
+    '@typescript-eslint/explicit-function-return-type': 'error',
+    'react/prop-types': 'error',
+    'import/order': ['error', {
+      'groups': [['builtin', 'external', 'internal']],
+      'newlines-between': 'always',
+    }],
+    'jsx-a11y/anchor-is-valid': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   settings: {
     react: {
